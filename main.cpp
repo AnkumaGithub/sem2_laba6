@@ -76,3 +76,15 @@ public:
         }
     }
 };
+
+class Sorter {
+public:
+    Sorter(std::unique_ptr<SortingStrategy>&& strategy) : strategy_(std::move(strategy)) {}
+
+    void sortData(std::vector<int>& data) {
+        strategy_->sort(data);
+    }
+
+private:
+    std::unique_ptr<SortingStrategy> strategy_;
+};
