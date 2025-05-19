@@ -13,9 +13,9 @@ class BubbleSortStrategy : public SortingStrategy {
 public:
     void sort(std::vector<int>& data) override {
         bool swapped;
-        for (size_t i = 0; i < data.size(); ++i) {
+        for (size_t i = 0; i < data.size(); i+=1) {
             swapped = false;
-            for (size_t j = 0; j < data.size() - i - 1; ++j) {
+            for (size_t j = 0; j < data.size() - i - 1; j+=1) {
                 if (data[j] > data[j + 1]) {
                     std::swap(data[j], data[j + 1]);
                     swapped = true;
@@ -44,9 +44,9 @@ private:
     int partition(std::vector<int>& data, int low, int high) {
         int pivot = data[high];
         int i = low - 1;
-        for (int j = low; j <= high - 1; ++j) {
+        for (int j = low; j <= high - 1; j+=1) {
             if (data[j] < pivot) {
-                ++i;
+                i+=1;
                 std::swap(data[i], data[j]);
             }
         }
@@ -59,5 +59,20 @@ class StdSortStrategy : public SortingStrategy {
 public:
     void sort(std::vector<int>& data) override {
         std::sort(data.begin(), data.end());
+    }
+};
+
+class InsertionSortStrategy : public SortingStrategy {
+public:
+    void sort(std::vector<int>& data) override {
+        for (size_t i = 1; i < data.size(); i+=1) {
+            int key = data[i];
+            int j = i - 1;
+            while (j >= 0 && data[j] > key) {
+                data[j + 1] = data[j];
+                j-=1;
+            }
+            data[j + 1] = key;
+        }
     }
 };
