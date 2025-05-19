@@ -88,3 +88,55 @@ public:
 private:
     std::unique_ptr<SortingStrategy> strategy_;
 };
+
+void printVector(const std::vector<int>& data) {
+    for (int num : data) {
+        std::cout << num << " ";
+    }
+    std::cout << "\n";
+}
+
+int main() {
+    std::vector<int> data = {5, 2, 7, 1, 3};
+
+    std::cout << "Original data: ";
+    printVector(data);
+
+    // Bubble Sort
+    {
+        std::vector<int> dataCopy = data;
+        Sorter sorter(std::make_unique<BubbleSortStrategy>());
+        sorter.sortData(dataCopy);
+        std::cout << "Bubble sorted: ";
+        printVector(dataCopy);
+    }
+
+    // Quick Sort
+    {
+        std::vector<int> dataCopy = data;
+        Sorter sorter(std::make_unique<QuickSortStrategy>());
+        sorter.sortData(dataCopy);
+        std::cout << "Quick sorted: ";
+        printVector(dataCopy);
+    }
+
+    // Std Sort
+    {
+        std::vector<int> dataCopy = data;
+        Sorter sorter(std::make_unique<StdSortStrategy>());
+        sorter.sortData(dataCopy);
+        std::cout << "Std sorted: ";
+        printVector(dataCopy);
+    }
+
+    // Insertion Sort
+    {
+        std::vector<int> dataCopy = data;
+        Sorter sorter(std::make_unique<InsertionSortStrategy>());
+        sorter.sortData(dataCopy);
+        std::cout << "Insertion sorted: ";
+        printVector(dataCopy);
+    }
+
+    return 0;
+}
