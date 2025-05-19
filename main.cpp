@@ -54,3 +54,10 @@ private:
         return i + 1;
     }
 };
+
+class StdSortStrategy : public SortingStrategy {
+public:
+    void sort(std::vector<int>& data) override {
+        std::sort(data.begin(), data.end());
+    }
+};
